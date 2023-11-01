@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import argparse
-import re
-# COMMENT_CONTAINER = ['div',re.compile('user-post-item')]
+
 COMMENT_CONTAINER = ['div',{'data-e2e':'favorites-item'}]
 def ap():
     parser = argparse.ArgumentParser(description='A simple CLI tool.')
@@ -23,9 +22,7 @@ def main(args):
         links = container.find_all('a')
         assert len(links)==1
         all_links.append(links[0]['href'])
-        # for link in links:
-        #     assert
-        #     print(f"Url: {link['href']}")
+
     with open(args.output_txt,'w') as f:
         for link in all_links:
             f.write(link)
